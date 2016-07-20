@@ -11,7 +11,7 @@ import UIKit
 class EncodeViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     var picData = NSData()
-    
+    var picChunkArray : NSMutableArray = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +35,8 @@ class EncodeViewController: UIViewController, UINavigationControllerDelegate, UI
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        picData = UIImageJPEGRepresentation(image, 0.1)!
+        let resizedImage = resizeImage(image, newWidth: 200)
+        picData = UIImageJPEGRepresentation(resizedImage, 0.2)!
         
         UIPasteboard.generalPasteboard().string = picData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
         
@@ -46,6 +47,21 @@ class EncodeViewController: UIViewController, UINavigationControllerDelegate, UI
         alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion:nil)
     }
+    
+    // From http://stackoverflow.com/questions/31966885/ios-swift-resize-image-to-200x200pt-px
+    
+    func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage {
+        
+        let scale = newWidth / image.size.width
+        let newHeight = image.size.height * scale
+        UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
+        image.drawInRect(CGRectMake(0, 0, newWidth, newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+
     
 
     override func didReceiveMemoryWarning() {
