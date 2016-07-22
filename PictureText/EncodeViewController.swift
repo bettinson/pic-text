@@ -12,6 +12,11 @@ class EncodeViewController: UIViewController, UINavigationControllerDelegate, UI
 
     var picData = NSData()
     var picChunkArray : NSMutableArray = []
+
+    enum imagePickerOptions {
+        case Camera
+        case PhotoLibrary
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,18 +25,37 @@ class EncodeViewController: UIViewController, UINavigationControllerDelegate, UI
     }
     
     @IBAction func takePicture(sender: AnyObject) {
+        presentImagePicker(imagePickerOptions.Camera)
+    }
+    
+    @IBAction func selectPicture(sender: AnyObject) {
+        presentImagePicker(imagePickerOptions.PhotoLibrary)
+    }
+    
+    func presentImagePicker(option: imagePickerOptions) {
         let imagePicker = UIImagePickerController()
         
-        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
-            imagePicker.sourceType = .Camera
+        if option == imagePickerOptions.Camera {
+            if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+                imagePicker.sourceType = .Camera
+            }
+            else {
+                let alert = UIAlertController(title: nil, message: "You don't even have a camera!", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Oh yeah...", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: {
+                    imagePicker.sourceType = .PhotoLibrary
+                })
+            }
         }
-        else {
-            imagePicker.sourceType = .PhotoLibrary
+        
+        if option == imagePickerOptions.PhotoLibrary {
+           imagePicker.sourceType = .PhotoLibrary
         }
         
         imagePicker.delegate = self
         presentViewController(imagePicker, animated: true, completion: nil)
     }
+    
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
