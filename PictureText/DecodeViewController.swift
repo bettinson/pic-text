@@ -15,12 +15,11 @@ class DecodeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        imageView.userInteractionEnabled = false
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         // Do any additional setup after loading the view, typically from a nib.
     }
-    
-    
     
     @IBAction func convert(sender: AnyObject) {
         if copyTextField.text != "" {
@@ -30,12 +29,29 @@ class DecodeViewController: UIViewController {
                 let image = UIImage(data: data)
                 imageView.image = image
                 dismissKeyboard()
+                imageView.userInteractionEnabled = true
             } else {
                 popInvalidAlert("Data is invalid. Are you sure you didn't delete anything?")
             }
         } else {
             popInvalidAlert("You didn't input anything.")
         }
+    }
+    
+    @IBAction func imageTapped(sender: UITapGestureRecognizer) {
+        let imageView = sender.view as! UIImageView
+        let newImageView = UIImageView(image: imageView.image)
+        newImageView.frame = self.view.frame
+        newImageView.backgroundColor = .blackColor()
+        newImageView.contentMode = .ScaleAspectFit
+        newImageView.userInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(DecodeViewController.dismissFullscreenImage(_:)))
+        newImageView.addGestureRecognizer(tap)
+        self.view.addSubview(newImageView)
+    }
+    
+    func dismissFullscreenImage(sender: UITapGestureRecognizer) {
+        sender.view?.removeFromSuperview()
     }
     
     func popInvalidAlert(text: String) {

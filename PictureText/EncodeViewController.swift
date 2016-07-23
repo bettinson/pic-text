@@ -32,6 +32,7 @@ class EncodeViewController: UIViewController, UINavigationControllerDelegate, UI
         presentImagePicker(imagePickerOptions.PhotoLibrary)
     }
     
+
     
     //This is really gross, sorry
     func presentImagePicker(option: imagePickerOptions) {
