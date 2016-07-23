@@ -8,17 +8,25 @@
 
 import UIKit
 
-class DecodeViewController: UIViewController {
+class DecodeViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var copyTextField: UITextView!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var clearButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         imageView.userInteractionEnabled = false
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
+        copyTextField.delegate = self
+        
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    @IBAction func clear(sender: AnyObject) {
+        copyTextField.text = ""
+        clearButton.enabled = false
     }
     
     @IBAction func convert(sender: AnyObject) {
@@ -48,6 +56,14 @@ class DecodeViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(DecodeViewController.dismissFullscreenImage(_:)))
         newImageView.addGestureRecognizer(tap)
         self.view.addSubview(newImageView)
+    }
+    
+    func textViewDidChange(textView: UITextView) {
+        if textView.text == "" {
+            clearButton.enabled = false
+        } else {
+            clearButton.enabled = true
+        }
     }
     
     func dismissFullscreenImage(sender: UITapGestureRecognizer) {
