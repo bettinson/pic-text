@@ -46,6 +46,8 @@ class DecodeViewController: UIViewController, UITextViewDelegate {
         }
     }
     
+    
+    //Makes image full screen
     @IBAction func imageTapped(sender: UITapGestureRecognizer) {
         let imageView = sender.view as! UIImageView
         let newImageView = UIImageView(image: imageView.image)
@@ -55,7 +57,15 @@ class DecodeViewController: UIViewController, UITextViewDelegate {
         newImageView.userInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(DecodeViewController.dismissFullscreenImage(_:)))
         newImageView.addGestureRecognizer(tap)
+        
+        dismissKeyboard()
+        UIApplication.sharedApplication().statusBarHidden = true
+        newImageView.alpha = 0
         self.view.addSubview(newImageView)
+        UIView.animateWithDuration(0.3, animations: {
+            newImageView.alpha = 1
+            self.tabBarController?.tabBar.alpha = 0
+        })
     }
     
     func textViewDidChange(textView: UITextView) {
@@ -67,7 +77,17 @@ class DecodeViewController: UIViewController, UITextViewDelegate {
     }
     
     func dismissFullscreenImage(sender: UITapGestureRecognizer) {
-        sender.view?.removeFromSuperview()
+        
+        UIApplication.sharedApplication().statusBarHidden = false
+        self.tabBarController?.tabBar.hidden = false
+        
+        UIView.animateWithDuration(0.3, animations: { 
+            sender.view?.alpha = 0
+            self.tabBarController?.tabBar.alpha = 1
+            }, completion: {(finished: Bool) -> Void in
+            sender.view?.removeFromSuperview()
+        })
+        
     }
     
     func popInvalidAlert(text: String) {
