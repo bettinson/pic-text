@@ -103,6 +103,7 @@
 					BB926DFF1D3EC88300412BE8 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = Z8CGBJ42EF;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -265,6 +266,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = mb.PictureText;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -279,6 +281,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = mb.PictureText;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

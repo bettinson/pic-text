@@ -9,7 +9,7 @@
 import UIKit
 
 class DecodeViewController: UIViewController {
-
+    
     @IBOutlet weak var copyTextField: UITextView!
     @IBOutlet weak var imageView: UIImageView!
     
@@ -20,12 +20,12 @@ class DecodeViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-
-
+    
+    
     @IBAction func convert(sender: AnyObject) {
         if copyTextField.text != "" {
             let string = copyTextField.text
-
+            
             if let data = NSData(base64EncodedString: string, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters) {
                 let image = UIImage(data: data)
                 imageView.image = image
@@ -52,7 +52,7 @@ class DecodeViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
 }
 

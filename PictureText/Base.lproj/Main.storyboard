@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Encode-->
@@ -17,15 +18,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P5K-wl-ryu">
-                                <rect key="frame" x="71" y="204" width="233" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P5K-wl-ryu">
+                                <rect key="frame" x="145" y="100" width="85" height="30"/>
                                 <state key="normal" title="Take picture"/>
                                 <connections>
                                     <action selector="takePicture:" destination="9pv-A4-QxB" eventType="touchUpInside" id="z5k-0w-94a"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x1V-YO-OFO">
-                                <rect key="frame" x="139" y="271" width="96" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x1V-YO-OFO">
+                                <rect key="frame" x="139" y="200" width="96" height="30"/>
                                 <state key="normal" title="Select picture"/>
                                 <connections>
                                     <action selector="selectPicture:" destination="9pv-A4-QxB" eventType="touchUpInside" id="v5G-pa-dDw"/>
@@ -33,6 +34,13 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="P5K-wl-ryu" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="2hi-0A-khf"/>
+                            <constraint firstItem="x1V-YO-OFO" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="2w5-hc-N76"/>
+                            <constraint firstItem="x1V-YO-OFO" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="topMargin" constant="200" id="a2O-1H-5hJ"/>
+                            <constraint firstItem="x1V-YO-OFO" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="pM8-Ps-8YJ"/>
+                            <constraint firstItem="P5K-wl-ryu" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="topMargin" constant="100" id="wMp-pg-30J"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Ecode" image="first" id="acW-dT-cKf"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -50,36 +58,65 @@
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fu4-Nx-MyP">
-                                <rect key="frame" x="20" y="84" width="335" height="191"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fu4-Nx-MyP">
+                                <rect key="frame" x="20" y="61" width="280" height="191"/>
                                 <color key="backgroundColor" red="0.96930219240837701" green="0.96930219240837701" blue="0.96930219240837701" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="191" id="dEN-NY-oE2"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Paste data here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N66-3b-V11">
-                                <rect key="frame" x="127" y="39" width="120" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Paste data here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N66-3b-V11">
+                                <rect key="frame" x="68" y="28" width="182" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6GN-e0-9Mg">
-                                <rect key="frame" x="160" y="283" width="55" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6GN-e0-9Mg">
+                                <rect key="frame" x="133" y="260" width="55" height="30"/>
                                 <state key="normal" title="Convert"/>
                                 <connections>
                                     <action selector="convert:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="Z8b-bz-yQR"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kpa-JE-vLo">
-                                <rect key="frame" x="20" y="315" width="335" height="303"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kpa-JE-vLo">
+                                <rect key="frame" x="20" y="298" width="280" height="213"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fu4-Nx-MyP" firstAttribute="leading" secondItem="kpa-JE-vLo" secondAttribute="leading" id="1Kl-Xo-5uO"/>
+                            <constraint firstItem="fu4-Nx-MyP" firstAttribute="top" secondItem="N66-3b-V11" secondAttribute="bottom" constant="43" id="2VH-dW-G13"/>
+                            <constraint firstItem="fu4-Nx-MyP" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="3HM-8o-GA7"/>
+                            <constraint firstItem="fu4-Nx-MyP" firstAttribute="top" secondItem="N66-3b-V11" secondAttribute="bottom" constant="20" id="3J4-g6-GO6"/>
+                            <constraint firstItem="N66-3b-V11" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" constant="-1" id="3jN-Bx-Pce"/>
+                            <constraint firstItem="fu4-Nx-MyP" firstAttribute="trailing" secondItem="N66-3b-V11" secondAttribute="trailing" constant="50" id="5Ll-3u-5en"/>
+                            <constraint firstItem="kpa-JE-vLo" firstAttribute="height" secondItem="6GN-e0-9Mg" secondAttribute="height" constant="183" id="BTH-0n-Jqu"/>
+                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="kpa-JE-vLo" secondAttribute="bottom" constant="8" id="EMI-XP-0rQ"/>
+                            <constraint firstItem="6GN-e0-9Mg" firstAttribute="top" secondItem="fu4-Nx-MyP" secondAttribute="bottom" constant="8" id="Egg-IC-mdq"/>
+                            <constraint firstItem="fu4-Nx-MyP" firstAttribute="width" secondItem="QS5-Rx-YEW" secondAttribute="width" constant="-40" id="Xb7-3e-loi"/>
+                            <constraint firstItem="fu4-Nx-MyP" firstAttribute="centerX" secondItem="6GN-e0-9Mg" secondAttribute="centerX" id="arR-3l-HIh"/>
+                            <constraint firstItem="kpa-JE-vLo" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="l2S-Mt-ArY"/>
+                            <constraint firstItem="fu4-Nx-MyP" firstAttribute="trailing" secondItem="kpa-JE-vLo" secondAttribute="trailing" id="nua-tk-0s5"/>
+                            <constraint firstItem="kpa-JE-vLo" firstAttribute="bottom" secondItem="Djb-ko-YwX" secondAttribute="top" constant="-8" id="oqH-or-1s9"/>
+                            <constraint firstItem="fu4-Nx-MyP" firstAttribute="top" secondItem="N66-3b-V11" secondAttribute="bottom" constant="12" id="vnR-7q-9dm"/>
+                            <constraint firstItem="6GN-e0-9Mg" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="xUo-nf-sBO"/>
+                            <constraint firstItem="N66-3b-V11" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="topMargin" constant="28" id="zkM-UB-m6N"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="2VH-dW-G13"/>
+                                <exclude reference="3J4-g6-GO6"/>
+                                <exclude reference="oqH-or-1s9"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="more" id="cPa-gy-q4n"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="copyTextField" destination="fu4-Nx-MyP" id="8gC-7E-WhB"/>
                         <outlet property="imageView" destination="kpa-JE-vLo" id="R9J-EW-49g"/>
@@ -87,7 +124,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="749.5" y="445.5"/>
+            <point key="canvasLocation" x="749" y="445"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">

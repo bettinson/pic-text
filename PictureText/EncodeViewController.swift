@@ -9,10 +9,10 @@
 import UIKit
 
 class EncodeViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-
+    
     var picData = NSData()
     var picChunkArray : NSMutableArray = []
-
+    
     enum imagePickerOptions {
         case Camera
         case PhotoLibrary
@@ -32,30 +32,36 @@ class EncodeViewController: UIViewController, UINavigationControllerDelegate, UI
         presentImagePicker(imagePickerOptions.PhotoLibrary)
     }
     
+    
+    //This is really gross, sorry
     func presentImagePicker(option: imagePickerOptions) {
         let imagePicker = UIImagePickerController()
+        
+        if option == imagePickerOptions.PhotoLibrary {
+            imagePicker.sourceType = .PhotoLibrary
+            imagePicker.delegate = self
+            presentViewController(imagePicker, animated: true, completion: nil)
+        }
         
         if option == imagePickerOptions.Camera {
             if UIImagePickerController.isSourceTypeAvailable(.Camera) {
                 imagePicker.sourceType = .Camera
+                presentViewController(imagePicker, animated: true, completion: nil)
             }
             else {
+                imagePicker.sourceType = .PhotoLibrary
                 let alert = UIAlertController(title: nil, message: "You don't even have a camera!", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Oh yeah...", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: {
-                    imagePicker.sourceType = .PhotoLibrary
-                })
+                alert.addAction(UIAlertAction(title: "Okay",
+                    style: UIAlertActionStyle.Default,
+                    handler: {(alert: UIAlertAction!) in self.presentViewController(imagePicker, animated: true, completion: nil)}))
+                presentViewController(alert, animated: true, completion: nil)
             }
-        }
-        
-        if option == imagePickerOptions.PhotoLibrary {
-           imagePicker.sourceType = .PhotoLibrary
-        }
-        
-        imagePicker.delegate = self
-        presentViewController(imagePicker, animated: true, completion: nil)
-    }
     
+    
+        imagePicker.delegate = self
+        }
+    }
+//        self.presentViewController(imagePicker, animated: true, completion: nil)
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
@@ -85,14 +91,13 @@ class EncodeViewController: UIViewController, UINavigationControllerDelegate, UI
         
         return newImage
     }
-
     
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-
+    
 }
-
