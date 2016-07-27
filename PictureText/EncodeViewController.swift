@@ -66,7 +66,7 @@ class EncodeViewController: UIViewController, UINavigationControllerDelegate, UI
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        let resizedImage = resizeImage(image, newWidth: 200)
+        let resizedImage = resizeImage(image, newWidth: 600)
         picData = UIImageJPEGRepresentation(resizedImage, 0.2)!
         
         UIPasteboard.generalPasteboard().string = picData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)

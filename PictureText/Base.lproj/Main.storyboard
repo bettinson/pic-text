@@ -178,9 +178,9 @@
                             <mask key="constraints">
                                 <exclude reference="2VH-dW-G13"/>
                                 <exclude reference="3J4-g6-GO6"/>
-                                <exclude reference="pM8-F9-QlR"/>
-                                <exclude reference="Egg-IC-mdq"/>
                                 <exclude reference="oqH-or-1s9"/>
+                                <exclude reference="Egg-IC-mdq"/>
+                                <exclude reference="pM8-F9-QlR"/>
                             </mask>
                         </variation>
                     </view>
