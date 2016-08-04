@@ -87,7 +87,6 @@ class DecodeViewController: UIViewController, UITextViewDelegate {
             }, completion: {(finished: Bool) -> Void in
             sender.view?.removeFromSuperview()
         })
-        
     }
     
     func popInvalidAlert(text: String) {
@@ -104,7 +103,6 @@ class DecodeViewController: UIViewController, UITextViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
 }
 

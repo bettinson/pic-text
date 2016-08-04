@@ -66,7 +66,7 @@ class EncodeViewController: UIViewController, UINavigationControllerDelegate, UI
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        let resizedImage = resizeImage(image, newWidth: 600)
+        let resizedImage = resizeImage(image, newWidth: 500)
         picData = UIImageJPEGRepresentation(resizedImage, 0.2)!
         
         UIPasteboard.generalPasteboard().string = picData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
@@ -74,7 +74,7 @@ class EncodeViewController: UIViewController, UINavigationControllerDelegate, UI
         
         dismissViewControllerAnimated(true, completion: nil)
         
-        let alert = UIAlertController(title: "Copied", message: "The string has been copied to your clipboard. Send in iMessage or wherever pictures are blocked and have the recepient decode in the screen to the right.", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Copied", message: "The string has been copied to your clipboard. Paste in iMessage or wherever and have the recepient decode in the 'More' tab.", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion:nil)
     }
